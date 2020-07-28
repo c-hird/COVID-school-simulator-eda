@@ -1,5 +1,6 @@
 library(dplyr)
 library(readxl)
+library(ggplot2)
 
 df <- read_excel("C:/Users/sigma_phi_kappa/Desktop/Simulation_Infections.xlsx")
 
@@ -30,4 +31,10 @@ scenario2data %>% summarize(total = n(), max=max(infections), min=min(infections
 scenario3data <- scenario3 %>% group_by(scenario3$Simulation_Iteration) %>% summarize(infections = n())
 scenario3data %>% summarize(total = n(), max=max(infections), min=min(infections), median = median(infections))
 
-scenario3data
+ggplot() + geom_bar(aes(x=scenario1$Infection_Type))
+ggplot() + geom_bar(aes(x=scenario2$Infection_Type))
+ggplot() + geom_bar(aes(x=scenario3$Infection_Type))
+
+ggplot() + geom_bar(aes(x=scenario1$Severity))
+ggplot() + geom_bar(aes(x=scenario2$Severity))
+ggplot() + geom_bar(aes(x=scenario3$Severity))
